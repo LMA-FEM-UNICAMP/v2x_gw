@@ -32,6 +32,9 @@
 #include <utility>
 #include <mutex>
 
+#include <netdb.h> //hostent
+#include <arpa/inet.h>
+
 #include "rclcpp/rclcpp.hpp"
 
 #include <diagnostic_msgs/msg/diagnostic_array.hpp>

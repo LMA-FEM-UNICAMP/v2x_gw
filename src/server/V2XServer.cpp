@@ -1,6 +1,3 @@
-#include <netdb.h> //hostent
-#include <arpa/inet.h>
-
 #include "V2XServer.h"
 
 V2XServer::V2XServer(rclcpp::Node *gateway_node, std::map<MsgType, V2XMHandler *> v2x_m_handler)

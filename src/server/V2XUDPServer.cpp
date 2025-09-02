@@ -62,15 +62,8 @@ void V2XUDPServer::ReadConfig()
     GetNode()->declare_parameter("udp_ip_tx_", "127.0.0.1");
     GetNode()->get_parameter("udp_ip_tx_", udp_ip_tx_);
 
-    if (SERVER_TYPE.compare("zmq") == 0)
-    {
-        is_active_ = true;
-
-        GetNode()->declare_parameter("server.cycle_time_ms", 100);
-        GetNode()->get_parameter("server.cycle_time_ms", SERVER_CYCLE_TIME_MS);
-    }
-
-    is_configured_ = true;
+    GetNode()->declare_parameter("server.cycle_time_ms", 100);
+    GetNode()->get_parameter("server.cycle_time_ms", SERVER_CYCLE_TIME_MS);
 }
 
 bool V2XUDPServer::IsAlive()

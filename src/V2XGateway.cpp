@@ -1,13 +1,4 @@
-
 #include "V2XGateway.h"
-
-#include "handler/CAMHandler.h"
-#include "handler/CPMHandler.h"
-#include "handler/DENMHandler.h"
-#include "handler/IVIMHandler.h"
-#include "handler/ExampleMHandler.h"
-
-#include "server/V2XUDPServer.h"
 
 /*
  * TODO
