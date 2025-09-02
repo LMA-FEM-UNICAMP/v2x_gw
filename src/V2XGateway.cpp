@@ -87,7 +87,7 @@ void V2XGateway::process(void) {
 
     diagnostic_msgs::msg::DiagnosticStatus diagnostic_status;
     diagnostic_status.name = "v2x_sender";
-    diagnostic_status.hardware_id = "VehicleCAPTAIN";
+    diagnostic_status.hardware_id = "vilma_V2x";
 
     // update status
     diagnostic_status.level = diagnostic_status.OK;

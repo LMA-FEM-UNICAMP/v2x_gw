@@ -55,11 +55,11 @@ void V2XUDPServer::SendMessages(std::queue<std::pair<void *, size_t>> msgs)
 void V2XUDPServer::ReadConfig()
 {
 
-    GetNode()->declare_parameter("rx_udp_port", "2000");
+    GetNode()->declare_parameter("rx_udp_port", 2000);
     GetNode()->get_parameter("rx_udp_port", udp_port_rx_);
-    GetNode()->declare_parameter("rx_udp_port", "2000");
-    GetNode()->get_parameter("rx_udp_port", udp_port_tx_);
-    GetNode()->declare_parameter("udp_ip_tx_", "2000");
+    GetNode()->declare_parameter("tx_udp_port", 2000);
+    GetNode()->get_parameter("tx_udp_port", udp_port_tx_);
+    GetNode()->declare_parameter("udp_ip_tx_", "127.0.0.1");
     GetNode()->get_parameter("udp_ip_tx_", udp_ip_tx_);
 
     if (SERVER_TYPE.compare("zmq") == 0)
