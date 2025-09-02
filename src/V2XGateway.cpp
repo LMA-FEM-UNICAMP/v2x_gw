@@ -7,7 +7,7 @@
 #include "handler/IVIMHandler.h"
 #include "handler/ExampleMHandler.h"
 
-#include "server/V2XZMQServer.h"
+#include "server/V2XUDPServer.h"
 
 /*
  * TODO
@@ -35,7 +35,7 @@ V2XGateway::V2XGateway() : Node("v2x_gw") {
     v2x_m_handler_[MsgType::kNone] = new ExampleMHandler(this); // keep it, it is used for decoding
 
     // init server
-    v2x_server_ = new V2XZMQServer(this, v2x_m_handler_);
+    v2x_server_ = new V2XUDPServer(this, v2x_m_handler_);
 
     // create publishers
     diagnostics_pub_ =

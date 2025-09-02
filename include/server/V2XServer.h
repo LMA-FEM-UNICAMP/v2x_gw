@@ -30,6 +30,7 @@
 #include <queue>
 #include <string>
 #include <utility>
+#include <mutex>
 
 #include "rclcpp/rclcpp.hpp"
 
@@ -57,7 +58,7 @@ public:
 
     /// Receives V2X messages from the server
     /// \return a queue of received bytestreams
-    virtual std::queue<std::pair<void *, size_t>> ReceiveMessages() = 0;
+    // virtual std::queue<std::pair<void *, size_t>> ReceiveMessages() = 0;
 
     /// Sends V2X messages to the server
     /// \param msgs a queue of bytestream messages to send
@@ -108,6 +109,10 @@ protected:
     /// \param ip_address to check
     /// \return true if valid, false if invalid
     bool VerifyIPv4Address(std::string ip_address);
+
+    std::queue <std::pair<void *, size_t>> incoming_;
+
+    std::mutex incoming_mutex_;
 
 private:
     // attributes

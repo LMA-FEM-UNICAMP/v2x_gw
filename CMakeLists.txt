@@ -62,7 +62,7 @@ find_package(diagnostic_msgs REQUIRED)
 find_package(tf2 REQUIRED)
 find_package(tf2_ros REQUIRED)
 find_package(std_msgs REQUIRED)
-find_package(dbw_ford_msgs REQUIRED)
+# find_package(dbw_ford_msgs REQUIRED)
 find_package(v2x_msgs REQUIRED)
 
 #pkg_check_modules(${USE_ITS_LIBRARY} REQUIRED)
@@ -71,7 +71,8 @@ add_subdirectory(${USE_ITS_LIBRARY})
 # add executable and sources
 ament_auto_add_executable(v2x_gw src/V2XGateway.cpp
         src/server/V2XServer.cpp
-        src/server/V2XZMQServer.cpp
+        src/server/V2XUDPServer.cpp
+        src/server/UDPBridge.cpp
         src/handler/${USE_ITS_LIBRARY}/V2XMHandler.cpp
         src/handler/${USE_ITS_LIBRARY}/ExampleMHandler.cpp
         src/handler/${USE_ITS_LIBRARY}/CAMHandler.cpp
@@ -93,7 +94,7 @@ target_include_directories(v2x_gw PUBLIC ${CMAKE_INSTALL_PREFIX}/include/
         )
 
 # link libraries
-ament_target_dependencies(v2x_gw rclcpp std_msgs geometry_msgs nav_msgs visualization_msgs diagnostic_msgs dbw_ford_msgs v2x_msgs tf2 tf2_ros)
+ament_target_dependencies(v2x_gw rclcpp std_msgs geometry_msgs nav_msgs visualization_msgs diagnostic_msgs v2x_msgs tf2 tf2_ros)
 
 target_link_libraries(v2x_gw
         ${ZEROMQ_LIBRARIES}
