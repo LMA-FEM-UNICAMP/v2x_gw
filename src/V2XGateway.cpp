@@ -30,7 +30,7 @@ V2XGateway::V2XGateway() : Node("v2x_gw") {
 
     // create publishers
     diagnostics_pub_ =
-            this->create_publisher<diagnostic_msgs::msg::DiagnosticArray>("diagnostics/vehicle_captain", 1);
+            this->create_publisher<diagnostic_msgs::msg::DiagnosticArray>("diagnostics/vilma_v2x", 1);
 
     // create subscribers
 
