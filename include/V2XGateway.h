@@ -1,5 +1,6 @@
 //
 // Created by Christoph Pilz
+// Updated by Gabriel Toffanetto
 //
 // Description:
 // This is the main file for the ROS2 node
@@ -11,18 +12,9 @@
 // Credits: ["Christoph Pilz", "Markus Schratter"]
 // License: "BSD-3-clause"
 // Version: "1.0.0"
-// Maintainer: "Christoph Pilz"
-// E-Mail: "christoph.pilz@v2c2.at"
+// Maintainer: "Gabriel Toffanetto"
+// E-Mail: "gabriel.rocha@ieee.org"
 // Status = "Production"
-//
-// Reference to used code:
-// <Description1 what was used> (<Link>)
-// <Description2 what was used> (<Link>)
-//
-// Possible Improvements:
-// [] <Bug 1>
-// [] <Refactoring Idea 2>
-// [] <Feature Idea 3>
 //
 
 #ifndef _V2XGATEWAY_H_
@@ -43,7 +35,6 @@
 #include <sstream>
 #include <string>
 #include <stdlib.h>
-
 
 #include "rclcpp/rclcpp.hpp"
 #include <sys/time.h>
@@ -85,16 +76,15 @@
 
 using namespace std::chrono_literals;
 
-class V2XGateway : public rclcpp::Node {
+class V2XGateway : public rclcpp::Node
+{
 public:
     V2XGateway();
 
     ~V2XGateway();
 
 protected:
-
 private:
-
     // Attributes
     bool is_node_initialized_;
 
@@ -121,7 +111,6 @@ private:
 
     // Helpers
     double getTimeDifferenceSeconds(rclcpp::Time A, rclcpp::Time B);
-
 };
 
 #endif // _V2XGATEWAY_H_

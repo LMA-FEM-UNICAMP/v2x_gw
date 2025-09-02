@@ -1,4 +1,18 @@
-
+//
+// Created by Gabriel Toffanetto based in Christoph Pilz V2XZMQServer
+//
+// Description:
+// The V2XUDPServer is the UDP implementation of the V2XServer that connects to the Cohda devices
+//
+// Author(s): "Gabriel Toffanetto"
+// Copyright: "Copyright 2025"
+// Credits: ["Gabriel Toffanetto, Christoph Pilz"]
+// License: "BSD-3-clause"
+// Version: "1.0.0"
+// Maintainer: "Gabriel Toffanetto"
+// E-Mail: "gabriel.rocha@ieee.org"
+// Status = "Production"
+//
 #include "server/V2XUDPServer.h"
 
 V2XUDPServer::V2XUDPServer(rclcpp::Node *gateway_node, std::map<MsgType, V2XMHandler *> v2x_m_handler)

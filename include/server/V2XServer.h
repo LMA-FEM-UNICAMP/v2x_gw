@@ -1,5 +1,6 @@
 //
 // Created by Christoph Pilz
+// Updated by Gabriel Toffanetto
 //
 // Description:
 // The V2XServer is the interface class for the Server implementation
@@ -10,18 +11,9 @@
 // Credits: ["Christoph Pilz"]
 // License: "BSD-3-clause"
 // Version: "1.0.0"
-// Maintainer: "Christoph Pilz"
-// E-Mail: "christoph.pilz@v2c2.at"
+// Maintainer: "Gabriel Toffanetto"
+// E-Mail: "gabriel.rocha@ieee.org"
 // Status = "Production"
-//
-// Reference to used code:
-// <Description1 what was used> (<Link>)
-// <Description2 what was used> (<Link>)
-//
-// Possible Improvements:
-// [] <Bug 1>
-// [] <Refactoring Idea 2>
-// [] <Feature Idea 3>
 //
 
 #ifndef V2X_GW_V2XSERVER_H

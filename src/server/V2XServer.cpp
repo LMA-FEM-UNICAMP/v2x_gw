@@ -1,3 +1,21 @@
+//
+// Created by Christoph Pilz
+// Updated by Gabriel Toffanetto
+//
+// Description:
+// The V2XServer is the interface class for the Server implementation
+// - inherit this interface class to implement another V2X connection
+//
+// Author(s): "Christoph Pilz"
+// Copyright: "Copyright 2023, vehicleCAPTAIN toolbox"
+// Credits: ["Christoph Pilz"]
+// License: "BSD-3-clause"
+// Version: "1.0.0"
+// Maintainer: "Gabriel Toffanetto"
+// E-Mail: "gabriel.rocha@ieee.org"
+// Status = "Production"
+//
+
 #include "V2XServer.h"
 
 V2XServer::V2XServer(rclcpp::Node *gateway_node, std::map<MsgType, V2XMHandler *> v2x_m_handler)

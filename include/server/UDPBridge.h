@@ -1,3 +1,18 @@
+//
+// Created by Gabriel Toffanetto
+// Description:
+// Handle with UDP communication with Cohda device to send and fill message queue from server
+//
+// Author(s): "Gabriel Toffanetto"
+// Copyright: "Copyright 2025"
+// Credits: ["Christoph Pilz"]
+// License: "BSD-3-clause"
+// Version: "1.0.0"
+// Maintainer: "Gabriel Toffanetto"
+// E-Mail: "gabriel.rocha@ieee.org"
+// Status = "Production"
+//
+
 #ifndef UDP_Bridge_HPP_
 #define UDP_Bridge_HPP_
 

@@ -1,3 +1,22 @@
+//
+// Created by Christoph Pilz
+// Updated by Gabriel Toffanetto
+//
+// Description:
+// This is the main file for the ROS2 node
+// - it handles the server connection for rx/tx of V2X messages
+// - it handles the execution of Handler methods for the single V2X messages
+//
+// Author(s): "Christoph Pilz, Markus Schratter"
+// Copyright: "Copyright 2023, vehicleCAPTAIN toolbox"
+// Credits: ["Christoph Pilz", "Markus Schratter"]
+// License: "BSD-3-clause"
+// Version: "1.0.0"
+// Maintainer: "Gabriel Toffanetto"
+// E-Mail: "gabriel.rocha@ieee.org"
+// Status = "Production"
+//
+
 #include "V2XGateway.h"
 
 /*
@@ -5,15 +24,15 @@
  * [] Read Only for Raspi
  */
 
-
 using namespace std;
 
-
-V2XGateway::V2XGateway() : Node("v2x_gw") {
+V2XGateway::V2XGateway() : Node("v2x_gw")
+{
     is_node_initialized_ = false;
 
     // read configuration
-    if (!readConfig()) {
+    if (!readConfig())
+    {
         RCLCPP_ERROR(this->get_logger(), "Invalid configuration. Shutdown the node.");
         rclcpp::shutdown();
     }
@@ -30,7 +49,7 @@ V2XGateway::V2XGateway() : Node("v2x_gw") {
 
     // create publishers
     diagnostics_pub_ =
-            this->create_publisher<diagnostic_msgs::msg::DiagnosticArray>("diagnostics/vilma_v2x", 1);
+        this->create_publisher<diagnostic_msgs::msg::DiagnosticArray>("diagnostics/vilma_v2x", 1);
 
     // create subscribers
 
@@ -40,36 +59,36 @@ V2XGateway::V2XGateway() : Node("v2x_gw") {
     is_node_initialized_ = true;
 }
 
-
-V2XGateway::~V2XGateway() {
+V2XGateway::~V2XGateway()
+{
     // delete in reverse order
 
     // delete server
     delete v2x_server_;
 
     // delete message handler
-    for (auto elem: v2x_m_handler_) {
+    for (auto elem : v2x_m_handler_)
+    {
         delete elem.second;
     }
 }
 
-
-bool V2XGateway::readConfig() {
+bool V2XGateway::readConfig()
+{
     // Config arguments
 
-    //RCLCPP_INFO(this->get_logger(), "Center_line: %s and racing_line: %s", m_center_line_file.c_str(), m_racing_line_file.c_str());
+    // RCLCPP_INFO(this->get_logger(), "Center_line: %s and racing_line: %s", m_center_line_file.c_str(), m_racing_line_file.c_str());
 
     return true;
 }
 
-
-void V2XGateway::process(void) {
+void V2XGateway::process(void)
+{
     rclcpp::Time current_timestamp = this->get_clock()->now();
     rclcpp::Clock ros_clock(RCL_ROS_TIME);
 
     static unsigned int alive = 0;
     static rclcpp::Time prev_process_timestamp = current_timestamp;
-
 
     // prepare diagnostics_array
     diagnostics_.header.stamp = current_timestamp;
@@ -91,8 +110,10 @@ void V2XGateway::process(void) {
     diagnostic_status.values.push_back(key_value);
 
     // V2X handler diagnostics
-    for (auto const& handler : v2x_m_handler_) {
-        if(handler.first != MsgType::kNone) {
+    for (auto const &handler : v2x_m_handler_)
+    {
+        if (handler.first != MsgType::kNone)
+        {
             std::vector<diagnostic_msgs::msg::KeyValue> handler_diagnostics = handler.second->GetDiagnostics();
             diagnostic_status.values.insert(std::end(diagnostic_status.values), std::begin(handler_diagnostics), std::end(handler_diagnostics));
         }
@@ -102,11 +123,11 @@ void V2XGateway::process(void) {
     std::vector<diagnostic_msgs::msg::KeyValue> server_values = v2x_server_->GetDiagnostics();
     diagnostic_status.values.insert(std::end(diagnostic_status.values), std::begin(server_values), std::end(server_values));
 
-
     diagnostics_.status.push_back(diagnostic_status);
 
     // send diagnostics_array with 10Hz or if an error is present
-    if (alive % 10 == 0 || (diagnostics_.status.size() > 0 && diagnostics_.status.at(0).level > 0)) {
+    if (alive % 10 == 0 || (diagnostics_.status.size() > 0 && diagnostics_.status.at(0).level > 0))
+    {
         diagnostics_pub_->publish(diagnostics_);
     }
 
@@ -114,13 +135,14 @@ void V2XGateway::process(void) {
     alive++;
 }
 
-double V2XGateway::getTimeDifferenceSeconds(rclcpp::Time A, rclcpp::Time B) {
+double V2XGateway::getTimeDifferenceSeconds(rclcpp::Time A, rclcpp::Time B)
+{
     return (abs((A - B).seconds()));
 }
 
-
 // Main
-int main(int argc, char *argv[]) {
+int main(int argc, char *argv[])
+{
     rclcpp::init(argc, argv);
 
     rclcpp::spin(std::make_shared<V2XGateway>());
