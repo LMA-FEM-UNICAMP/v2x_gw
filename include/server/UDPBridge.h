@@ -37,6 +37,7 @@ public:
     UDPBridge(int udp_port_rx, int udp_port_tx, std::string udp_ip_tx, std::queue<std::pair<void *, size_t>> *incoming, std::mutex *incoming_mutex, int buffer_size);
     ~UDPBridge();
 
+    void configure();
     void listen();
     void stop();
     void start();
@@ -44,11 +45,19 @@ public:
     bool send(std::pair<void *, size_t> msg_tx);
 
 private:
-    int udp_port_rx_;
+    // UDP sender
     int udp_port_tx_;
     std::string udp_ip_tx_;
-    int sockfd_;
+    int sockfd_tx_;
+    struct sockaddr_in dest_addr_;
+
+    // UDP listener
+    int udp_port_rx_;
+    int sockfd_rx_;
     int buffer_size_;
+    char *buffer_rx_;
+    struct sockaddr_in server_addr_;
+    struct sockaddr_in client_addr_;
 
     bool listening;
     std::thread listener_thread_;

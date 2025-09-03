@@ -28,6 +28,10 @@ V2XUDPServer::V2XUDPServer(rclcpp::Node *gateway_node, std::map<MsgType, V2XMHan
     timer_ = rclcpp::create_timer(GetNode(), GetNode()->get_clock(),
                                   rclcpp::Duration::from_nanoseconds(RCL_MS_TO_NS(SERVER_CYCLE_TIME_MS)),
                                   std::bind(&V2XUDPServer::Process, this));
+
+
+    udp_bridge_->start();
+    udp_bridge_->send(std::make_pair(nullptr, 0));
 }
 
 V2XUDPServer::~V2XUDPServer()
@@ -69,9 +73,9 @@ void V2XUDPServer::SendMessages(std::queue<std::pair<void *, size_t>> msgs)
 void V2XUDPServer::ReadConfig()
 {
 
-    GetNode()->declare_parameter("rx_udp_port", 2000);
+    GetNode()->declare_parameter("rx_udp_port", 2500);
     GetNode()->get_parameter("rx_udp_port", udp_port_rx_);
-    GetNode()->declare_parameter("tx_udp_port", 2000);
+    GetNode()->declare_parameter("tx_udp_port", 2500);
     GetNode()->get_parameter("tx_udp_port", udp_port_tx_);
     GetNode()->declare_parameter("udp_ip_tx_", "127.0.0.1");
     GetNode()->get_parameter("udp_ip_tx_", udp_ip_tx_);
