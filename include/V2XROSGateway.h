@@ -17,8 +17,8 @@
 // Status = "Production"
 //
 
-#ifndef _V2XGATEWAY_H_
-#define _V2XGATEWAY_H_
+#ifndef _V2XROSGateway_H_
+#define _V2XROSGateway_H_
 
 #include <chrono>
 #include <memory>
@@ -76,12 +76,12 @@
 
 using namespace std::chrono_literals;
 
-class V2XGateway : public rclcpp::Node
+class V2XROSGateway : public rclcpp::Node
 {
 public:
-    V2XGateway();
+    V2XROSGateway();
 
-    ~V2XGateway();
+    ~V2XROSGateway();
 
 protected:
 private:
@@ -113,4 +113,4 @@ private:
     double getTimeDifferenceSeconds(rclcpp::Time A, rclcpp::Time B);
 };
 
-#endif // _V2XGATEWAY_H_
+#endif // _V2XROSGateway_H_

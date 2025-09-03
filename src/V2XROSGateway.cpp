@@ -17,7 +17,7 @@
 // Status = "Production"
 //
 
-#include "V2XGateway.h"
+#include "V2XROSGateway.h"
 
 /*
  * TODO
@@ -26,7 +26,7 @@
 
 using namespace std;
 
-V2XGateway::V2XGateway() : Node("v2x_gw")
+V2XROSGateway::V2XROSGateway() : Node("v2x_gw")
 {
     is_node_initialized_ = false;
 
@@ -54,12 +54,12 @@ V2XGateway::V2XGateway() : Node("v2x_gw")
     // create subscribers
 
     // create timers
-    timer_ = rclcpp::create_timer(this, this->get_clock(), 10ms, std::bind(&V2XGateway::process, this));
+    timer_ = rclcpp::create_timer(this, this->get_clock(), 10ms, std::bind(&V2XROSGateway::process, this));
 
     is_node_initialized_ = true;
 }
 
-V2XGateway::~V2XGateway()
+V2XROSGateway::~V2XROSGateway()
 {
     // delete in reverse order
 
@@ -73,7 +73,7 @@ V2XGateway::~V2XGateway()
     }
 }
 
-bool V2XGateway::readConfig()
+bool V2XROSGateway::readConfig()
 {
     // Config arguments
 
@@ -82,7 +82,7 @@ bool V2XGateway::readConfig()
     return true;
 }
 
-void V2XGateway::process(void)
+void V2XROSGateway::process(void)
 {
     rclcpp::Time current_timestamp = this->get_clock()->now();
     rclcpp::Clock ros_clock(RCL_ROS_TIME);
@@ -135,7 +135,7 @@ void V2XGateway::process(void)
     alive++;
 }
 
-double V2XGateway::getTimeDifferenceSeconds(rclcpp::Time A, rclcpp::Time B)
+double V2XROSGateway::getTimeDifferenceSeconds(rclcpp::Time A, rclcpp::Time B)
 {
     return (abs((A - B).seconds()));
 }
@@ -145,7 +145,7 @@ int main(int argc, char *argv[])
 {
     rclcpp::init(argc, argv);
 
-    rclcpp::spin(std::make_shared<V2XGateway>());
+    rclcpp::spin(std::make_shared<V2XROSGateway>());
 
     rclcpp::shutdown();
     return 0;

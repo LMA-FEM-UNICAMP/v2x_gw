@@ -69,7 +69,7 @@ find_package(v2x_msgs REQUIRED)
 add_subdirectory(${USE_ITS_LIBRARY})
 
 # add executable and sources
-ament_auto_add_executable(v2x_gw src/V2XGateway.cpp
+ament_auto_add_executable(v2x_gw src/V2XROSGateway.cpp
         src/server/V2XServer.cpp
         src/server/V2XUDPServer.cpp
         src/server/UDPBridge.cpp
