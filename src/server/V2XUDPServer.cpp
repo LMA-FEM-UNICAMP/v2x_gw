@@ -31,7 +31,6 @@ V2XUDPServer::V2XUDPServer(rclcpp::Node *gateway_node, std::map<MsgType, V2XMHan
 
 
     udp_bridge_->start();
-    udp_bridge_->send(std::make_pair(nullptr, 0));
 }
 
 V2XUDPServer::~V2XUDPServer()
