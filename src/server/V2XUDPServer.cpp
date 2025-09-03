@@ -72,14 +72,14 @@ void V2XUDPServer::SendMessages(std::queue<std::pair<void *, size_t>> msgs)
 void V2XUDPServer::ReadConfig()
 {
 
-    GetNode()->declare_parameter("rx_udp_port", 2500);
-    GetNode()->get_parameter("rx_udp_port", udp_port_rx_);
+    GetNode()->declare_parameter("server.rx_udp_port", 2500);
+    GetNode()->get_parameter("server.rx_udp_port", udp_port_rx_);
 
-    GetNode()->declare_parameter("tx_udp_port", 2500);
-    GetNode()->get_parameter("tx_udp_port", udp_port_tx_);
+    GetNode()->declare_parameter("server.tx_udp_port", 2500);
+    GetNode()->get_parameter("server.tx_udp_port", udp_port_tx_);
 
-    GetNode()->declare_parameter("udp_ip_tx_", "127.0.0.1");
-    GetNode()->get_parameter("udp_ip_tx_", udp_ip_tx_);
+    GetNode()->declare_parameter("server.udp_ip_tx_", "127.0.0.1");
+    GetNode()->get_parameter("server.dp_ip_tx_", udp_ip_tx_);
 
     GetNode()->declare_parameter("server.cycle_time_ms", 100);
     GetNode()->get_parameter("server.cycle_time_ms", SERVER_CYCLE_TIME_MS);
